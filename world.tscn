@@ -1,0 +1,82 @@
+[gd_scene load_steps=11 format=3 uid="uid://cb73bgp265tcj"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_7anes"]
+[ext_resource type="Texture2D" uid="uid://boosvpy6sy3ie" path="res://player/player.png" id="2_g11ke"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t2deh"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrx2t"]
+atlas = ExtResource("2_g11ke")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wdtj"]
+atlas = ExtResource("2_g11ke")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntupd"]
+atlas = ExtResource("2_g11ke")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr0ms"]
+atlas = ExtResource("2_g11ke")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xpjrn"]
+atlas = ExtResource("2_g11ke")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0oy4"]
+atlas = ExtResource("2_g11ke")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2v252"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrx2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wdtj")
+}],
+"loop": true,
+"name": &"walkDown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntupd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr0ms")
+}],
+"loop": true,
+"name": &"walkSide",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xpjrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r0oy4")
+}],
+"loop": true,
+"name": &"walkUp",
+"speed": 10.0
+}]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(163, 79)
+script = ExtResource("1_7anes")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_t2deh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_2v252")
+animation = &"walkDown"
+autoplay = "walkDown"

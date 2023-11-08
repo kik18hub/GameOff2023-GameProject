@@ -11,13 +11,16 @@ func _physics_process(_delta):
 	velocity = input_direction * SPEED
 	move_and_slide()
 
-	set_animation("walkDown")
+	set_animation("Walk")
 	if velocity == Vector2.ZERO:
 		sprite.stop()
+		
+func player():
+	pass
 
 func set_animation(animation):
 	var direction = "Side" if sprite_direction in ["Left", "Right"] else sprite_direction
-	sprite.play("walkSide" + "Right")
+	sprite.play(animation + direction)
 	sprite.flip_h = (sprite_direction == "Left")
 
 func _get_input_direction():

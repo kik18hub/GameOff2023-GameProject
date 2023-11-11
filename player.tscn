@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://dk1pf2f6x7pkv"]
+
+[ext_resource type="Script" path="res://player_movement.gd" id="1_32cuj"]
+[ext_resource type="Texture2D" uid="uid://boosvpy6sy3ie" path="res://player.png" id="2_2t0fx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cr5br"]
+radius = 5.0
+height = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnggl"]
+atlas = ExtResource("2_2t0fx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f37ju"]
+atlas = ExtResource("2_2t0fx")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u640u"]
+atlas = ExtResource("2_2t0fx")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5y6g1"]
+atlas = ExtResource("2_2t0fx")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5236"]
+atlas = ExtResource("2_2t0fx")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dv1y"]
+atlas = ExtResource("2_2t0fx")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6c27d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dnggl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f37ju")
+}],
+"loop": true,
+"name": &"WalkDown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u640u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5y6g1")
+}],
+"loop": true,
+"name": &"WalkSide",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b5236")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2dv1y")
+}],
+"loop": true,
+"name": &"WalkUp",
+"speed": 10.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(161, 87)
+motion_mode = 1
+script = ExtResource("1_32cuj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_cr5br")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6c27d")
+animation = &"WalkDown"

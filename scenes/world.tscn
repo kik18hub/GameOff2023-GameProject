@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://j1kr01qrkxqb"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_wk2pi"]
+[ext_resource type="PackedScene" uid="uid://dk1pf2f6x7pkv" path="res://player.tscn" id="2_vh8ph"]
+
+[sub_resource type="GDScript" id="GDScript_xc2qq"]
+script/source = "extends Camera2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Events.root_entered.connect(_room_entered)
+	
+
+func _room_entered(room):
+	global_position = room.global_position
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dbt3k"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 0.913725)
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_wk2pi")
+
+[node name="Player" parent="." instance=ExtResource("2_vh8ph")]
+collision_layer = 2
+speed = 100
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+position_smoothing_enabled = true
+script = SubResource("GDScript_xc2qq")
+
+[node name="RoomContainer" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dbt3k")
+
+[node name="RoomRectContainer" type="Node2D" parent="CanvasLayer/Panel"]
+
+[node name="Marker2D" type="Marker2D" parent="CanvasLayer/Panel"]
+position = Vector2(16, 48)
+
+[node name="PlayerIndicator" type="ColorRect" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 3.0
+offset_bottom = 3.0
+color = Color(0.207843, 0.435294, 1, 1)

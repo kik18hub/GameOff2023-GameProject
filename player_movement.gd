@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 70
+@export var speed = 70
 
 var input_direction: get = _get_input_direction 
 var sprite_direction = "Down": get = _get_sprite_direction
@@ -8,7 +8,7 @@ var sprite_direction = "Down": get = _get_sprite_direction
 @onready var sprite = $AnimatedSprite2D
 
 func _physics_process(_delta):
-	velocity = input_direction * SPEED
+	velocity = input_direction * speed
 	move_and_slide()
 
 	set_animation("Walk")

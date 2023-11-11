@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bakgkoajqomw4"]
+
+[sub_resource type="GDScript" id="GDScript_j0n47"]
+script/source = "extends Area2D
+
+@onready var marker_2d: Marker2D = $Marker2D
+
+
+func _on_body_entered(body: Node2D) -> void:
+	body.global_position = marker_2d.global_position
+"
+
+[node name="Door" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = SubResource("GDScript_j0n47")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

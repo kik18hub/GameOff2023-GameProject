@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var glob = load("res://glob.gd").new()
 
-func _process(delta):
+func _process(_delta):
 	change_scene()
 
 

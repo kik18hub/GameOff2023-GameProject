@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dr6rp2w46h73y"]
+[gd_scene load_steps=14 format=3 uid="uid://dr6rp2w46h73y"]
 
 [ext_resource type="Texture2D" uid="uid://boosvpy6sy3ie" path="res://player.png" id="1_7b8cx"]
 [ext_resource type="Script" path="res://battle.gd" id="1_or852"]
+[ext_resource type="Resource" uid="uid://44xddhhs1pv1" path="res://Ene.tres" id="2_qnvpy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osyvh"]
 content_margin_left = 8.0
@@ -71,6 +72,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_or852")
+enemy = ExtResource("2_qnvpy")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -246,4 +248,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = ">"
 
+[connection signal="pressed" from="ActionsPanel/Actions/Attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="ActionsPanel/Actions/Defend" to="." method="_on_defend_pressed"]
 [connection signal="pressed" from="ActionsPanel/Actions/Run" to="." method="_on_run_pressed"]

@@ -15,9 +15,11 @@ var room_count_per_floor := 3
 var room_coors: Array
 
 
+
+
 func _ready() -> void:
 	Events.root_entered.connect(_room_entered)
-	room_coors = RoomGeneration.generate_rooms(floor_count, room_count_per_floor)
+	room_coors = RoomGeneration.generate_rooms()
 	_add_room()
 	_draw_mini_map()
 	

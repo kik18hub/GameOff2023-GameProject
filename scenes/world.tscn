@@ -38,14 +38,14 @@ script = SubResource("GDScript_xc2qq")
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 48.0
-offset_bottom = 64.0
+offset_right = 56.0
+offset_bottom = 72.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dbt3k")
 
 [node name="RoomRectContainer" type="Node2D" parent="CanvasLayer/Panel"]
 
 [node name="Marker2D" type="Marker2D" parent="CanvasLayer/Panel"]
-position = Vector2(16, 48)
+position = Vector2(24, 8)
 
 [node name="PlayerIndicator" type="ColorRect" parent="CanvasLayer/Panel"]
 layout_mode = 0

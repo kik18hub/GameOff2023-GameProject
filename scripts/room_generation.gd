@@ -79,7 +79,7 @@ func generate_rooms():
 				available_types.append(RoomTypes.BLOCK)
 				
 			if (all_rooms[f - 1][r] != null and all_rooms[f - 1][r].type == RoomTypes.END) or (all_rooms[f + 1][r] != null and all_rooms[f + 1][r].type == RoomTypes.START):
-				available_types = available_types.filter(func(type): return type != RoomTypes.BLOCK)
+				available_types = available_types.filter(func(type): return type != RoomTypes.BLOCK and type != RoomTypes.BATTLE)
 				
 			var pick_type = available_types[randi_range(0, len(available_types) - 1)]
 			match pick_type:

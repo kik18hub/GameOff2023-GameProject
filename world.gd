@@ -43,6 +43,8 @@ func _add_room():
 				room_instance.has_down_door = true
 			if room.doors.has(RoomGeneration.DoorTypes.LEFT):
 				room_instance.has_left_door = true
+				
+			room_instance.room_type = room.type
 			room_container.add_child(room_instance)
 			room_instance.position = Vector2(
 				ROOM_SIZE.x * r,

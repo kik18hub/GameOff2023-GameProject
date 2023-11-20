@@ -11,6 +11,7 @@ script/source = "extends Node2D
 @export var has_right_door: bool = false
 @export var has_down_door: bool = false
 @export var has_left_door: bool = false
+@export var room_type: RoomGeneration.RoomTypes = RoomGeneration.RoomTypes.EMPTY
 
 @onready var door_up: Area2D = $DoorUp
 @onready var door_right: Area2D = $DoorRight
@@ -20,7 +21,8 @@ script/source = "extends Node2D
 
 
 const wall_cell_coordinate = Vector2i(0, 13)
-
+const chest_cell_coordinate = Vector2i(8, 6)
+const enemy_cell_coordinate = Vector2i(30, 8)
 
 func _ready() -> void:
 	if !has_up_door:
@@ -40,7 +42,10 @@ func _ready() -> void:
 		tile_map.set_cell(0, Vector2i(0, 4), 1, wall_cell_coordinate)
 		tile_map.set_cell(0, Vector2i(0, 5), 1, wall_cell_coordinate)	
 	
-		
+	if room_type == RoomGeneration.RoomTypes.CHEST:
+		tile_map.set_cell(0, Vector2i(9, 4), 1, chest_cell_coordinate)
+	elif room_type == RoomGeneration.RoomTypes.BATTLE:
+		tile_map.set_cell(0, Vector2i(9, 4), 1, enemy_cell_coordinate)
 
 func _on_player_detector_body_entered(body: Node2D) -> void:
 	Events.root_entered.emit(self)

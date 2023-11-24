@@ -8,5 +8,9 @@ var eA = 1.5
 var B = 20
 var pD = 10
 var m = 2
-var enemyAttack = ((eA * B) /pD) * m
+var enemyAttackNeu = ((eA * B) /pD) * m
 var def = (((eA * B) /pD) * m) / 2
+var enemyAtkCrit = (((eA * B) /pD) * m) * 2
+var enemyAtkRes = (((eA * B) /pD) * m) * 0.5
+
+var eneType = ["Physical", "Spell", "Nature"]

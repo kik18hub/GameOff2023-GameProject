@@ -50,9 +50,9 @@ func enemy_turn():
 		display_text("%s dealt %d damage!" % [enemy.name, enemy.def])
 		await self.textbox_closed
 	else:
-		current_player_health = max(0, current_player_health - enemy.enemyAttack)
+		current_player_health = max(0, current_player_health - enemy.enemyAttackNeu)
 		set_health($PlayerPanel/PlayerData/ProgressBar, current_player_health, State.max_health)
-		display_text("%s dealt %d damage!" % [enemy.name, enemy.enemyAttack])
+		display_text("%s dealt %d damage!" % [enemy.name, enemy.enemyAttackNeu])
 		await self.textbox_closed
 	
 	$ActionsPanel.show()
@@ -67,10 +67,10 @@ func _on_attack_pressed():
 	display_text("You attack the enemy!")
 	await self.textbox_closed
 	
-	current_enemy_health = max(0, current_enemy_health - State.playerAttack)
+	current_enemy_health = max(0, current_enemy_health - State.playerAttackNeu)
 	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
 	
-	display_text("You dealt %d damage!" % State.playerAttack)
+	display_text("You dealt %d damage!" % State.playerAttackNeu)
 	await self.textbox_closed
 	
 	enemy_turn()

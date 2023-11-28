@@ -3,9 +3,15 @@ extends Control
 signal textbox_closed
 
 @export var enemy:Resource
+@export var orc:Resource
+@export var mushroom:Resource
+@export var imp:Resource
 
 var current_player_health = 0
 var current_enemy_health = 0
+var current_orc_health = 0
+var current_imp_health = 0
+var current_mushroom_health = 0
 var is_defending = false
 
 func _ready():
@@ -13,8 +19,18 @@ func _ready():
 	set_health($PlayerPanel/PlayerData/ProgressBar, State.current_health, State.max_health)
 	$EnemyContainer/Enemy.texture = enemy.texture
 	
+	set_health($OrcContainer/ProgressBar, orc.health, orc.health)
+	$OrcContainer/Enemy.texture = orc.texture
+	set_health($ImpContainer/ProgressBar, imp.health, imp.health)
+	$ImpContainer/Enemy.texture = imp.texture
+	set_health($MushroomContainer/ProgressBar, mushroom.health, mushroom.health)
+	$MushroomContainer/Enemy.texture = mushroom.texture
+	
 	current_player_health = State.current_health
 	current_enemy_health = enemy.health
+	current_orc_health = orc.health
+	current_imp_health = imp.health
+	current_mushroom_health = mushroom.health
 	
 	$TextBox.hide()
 	$ActionsPanel.hide()
@@ -67,19 +83,60 @@ func _on_attack_pressed():
 	display_text("You attack the enemy!")
 	await self.textbox_closed
 	
-	current_enemy_health = max(0, current_enemy_health - State.playerAttackNeu)
-	set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+	if "Physical" in enemy.eneType:
+		if "Nature" in State.AtkType:
+			current_enemy_health = max(0, current_enemy_health - State.playerAtkCrit)
+			set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+			display_text("You dealt %d damage!" % State.playerAtkCrit)
+			await self.textbox_closed
+
+	if "Spell" in enemy.eneType:
+		if "Physical" in State.AtkType:
+			current_enemy_health = max(0, current_enemy_health - State.playerAtkCrit)
+			set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+			display_text("You dealt %d damage!" % State.playerAtkCrit)
+			await self.textbox_closed
 	
-	display_text("You dealt %d damage!" % State.playerAttackNeu)
-	await self.textbox_closed
-	
-	enemy_turn()
+	if "Nature" in enemy.eneType:
+		if "Spell" in State.AtkType:
+			current_enemy_health = max(0, current_enemy_health - State.playerAtkCrit)
+			set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+			display_text("You dealt %d damage!" % State.playerAtkCrit)
+			await self.textbox_closed
+
+	if "Nature" in enemy.eneType:
+		if "Physical" in State.AtkType:
+			current_enemy_health = max(0, current_enemy_health - State.playerAtkRes)
+			set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+			display_text("You dealt %d damage!" % State.playerAtkRes)
+			await self.textbox_closed
+				
+	if "Physical" in enemy.eneType:
+		if "Spell" in State.AtkType:
+			current_enemy_health = max(0, current_enemy_health - State.playerAtkRes)
+			set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+			display_text("You dealt %d damage!" % State.playerAtkRes)
+			await self.textbox_closed
+				
+	if "Spell" in enemy.eneType:
+		if "Nature" in State.AtkType:
+			current_enemy_health = max(0, current_enemy_health - State.playerAtkRes)
+			set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+			display_text("You dealt %d damage!" % State.playerAtkRes)
+			await self.textbox_closed
+	else:
+		current_enemy_health = max(0, current_enemy_health - State.playerAttackNeu)
+		set_health($EnemyContainer/ProgressBar, current_enemy_health, enemy.health)
+		display_text("You dealt %d damage!" % State.playerAttackNeu)
+		await self.textbox_closed
 	
 	if current_enemy_health == 0:
 		display_text("%s was defeated!" % enemy.name)
 		await self.textbox_closed
 		
 		get_tree().quit
+		
+	enemy_turn()
 
 
 func _on_defend_pressed():

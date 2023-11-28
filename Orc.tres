@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c4w0tamufg7l0"]
+
+[ext_resource type="Script" path="res://Orc.gd" id="1_cfomq"]
+
+[resource]
+script = ExtResource("1_cfomq")
+name = "Orc"
+health = 35
+eA = 5

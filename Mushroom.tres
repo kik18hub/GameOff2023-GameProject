@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://h8lg7sjhbbcb"]
+
+[ext_resource type="Script" path="res://Mushroom.gd" id="1_3itrr"]
+
+[resource]
+script = ExtResource("1_3itrr")
+name = "Mushroom"
+health = 45
+eA = 2
+mushType = "Nature"

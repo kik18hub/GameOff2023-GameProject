@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bypk1j7x2mt6f"]
+
+[ext_resource type="Script" path="res://Imp.gd" id="1_sm6po"]
+
+[resource]
+script = ExtResource("1_sm6po")
+name = "Imp"
+health = 25
+eA = 3
+impType = "Spell"

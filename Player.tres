@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://jejwh8a30mnp"]
+
+[ext_resource type="Script" path="res://state.gd" id="1_lu7hg"]
+
+[resource]
+script = ExtResource("1_lu7hg")
+current_health = 35
+max_health = 35
+damage = 5

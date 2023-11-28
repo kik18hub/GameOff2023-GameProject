@@ -1,8 +1,9 @@
 extends Node
 
-var current_health = 35
-var max_health = 35
-var damage = 5
+@export var current_health = 35
+@export var max_health = 35
+@export var damage = 5
+@export var texture:Texture
 
 var Physical
 var Spell
@@ -24,6 +25,13 @@ var norAtk = {
 	AtkType = "Physical"
 }
 
+var tailAtk = {
+	AtkName = "Tail Swipe",
+	AtkDmg = 15,
+	AtkTarget = "Single",
+	AtkType = "Physical"
+}
+
 var fireballAtk = {
 	AtkName = "Fireball",
 	AtkDmg = 15,
@@ -38,7 +46,7 @@ var natAtk = {
 	AtkType = "Nature"
 }
 
-var playAttacks = [norAtk, fireballAtk, natAtk]
+var playAttacks = [norAtk, tailAtk, fireballAtk, natAtk]
 
 var pA = 1.5
 var B = 20

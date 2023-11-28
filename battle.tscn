@@ -1,8 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://dr6rp2w46h73y"]
+[gd_scene load_steps=20 format=3 uid="uid://dr6rp2w46h73y"]
 
 [ext_resource type="Texture2D" uid="uid://boosvpy6sy3ie" path="res://player.png" id="1_7b8cx"]
 [ext_resource type="Script" path="res://battle.gd" id="1_or852"]
 [ext_resource type="Resource" uid="uid://44xddhhs1pv1" path="res://Ene.tres" id="2_qnvpy"]
+[ext_resource type="Resource" uid="uid://c4w0tamufg7l0" path="res://Orc.tres" id="3_ibfsb"]
+[ext_resource type="Resource" uid="uid://h8lg7sjhbbcb" path="res://Mushroom.tres" id="4_7uolc"]
+[ext_resource type="Resource" uid="uid://bypk1j7x2mt6f" path="res://Imp.tres" id="5_0nsnf"]
+[ext_resource type="Texture2D" uid="uid://c5yr64sq6llwm" path="res://orc.png" id="7_5m0ag"]
+[ext_resource type="Texture2D" uid="uid://cys2nsfeuhpg5" path="res://mushroom.png" id="8_c8m75"]
+[ext_resource type="Texture2D" uid="uid://wi3i0k36rwey" path="res://imp.png" id="9_jydg7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osyvh"]
 content_margin_left = 8.0
@@ -73,6 +79,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_or852")
 enemy = ExtResource("2_qnvpy")
+orc = ExtResource("3_ibfsb")
+mushroom = ExtResource("4_7uolc")
+imp = ExtResource("5_0nsnf")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
@@ -116,6 +125,123 @@ vertical_alignment = 1
 [node name="Enemy" type="TextureRect" parent="EnemyContainer"]
 layout_mode = 2
 texture = ExtResource("1_7b8cx")
+stretch_mode = 3
+
+[node name="OrcContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -52.0
+offset_right = 48.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="OrcContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_osyvh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8v2pi")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="OrcContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_cavrs")
+text = "HP: 25/50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy" type="TextureRect" parent="OrcContainer"]
+layout_mode = 2
+texture = ExtResource("7_5m0ag")
+stretch_mode = 3
+
+[node name="MushroomContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -52.0
+offset_right = 48.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MushroomContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_osyvh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8v2pi")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="MushroomContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_cavrs")
+text = "HP: 25/50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy" type="TextureRect" parent="MushroomContainer"]
+layout_mode = 2
+texture = ExtResource("8_c8m75")
+stretch_mode = 3
+
+[node name="ImpContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -52.0
+offset_right = 48.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="ImpContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_osyvh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8v2pi")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="ImpContainer/ProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_cavrs")
+text = "HP: 25/50"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Enemy" type="TextureRect" parent="ImpContainer"]
+layout_mode = 2
+texture = ExtResource("9_jydg7")
 stretch_mode = 3
 
 [node name="PlayerPanel" type="Panel" parent="."]
